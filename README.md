@@ -12,7 +12,6 @@ I believe it’s better to write your own Hyprland setup from scratch, or at lea
 
 If you're just starting out, I recommend:
 
-- **Using a config generator** like [wifi.sh](https://github.com/hyprwm/Hyprland/wiki/Useful-Community-Scripts#wifish---generate-hyprland-configs)  
 - Or even better: **build your own config** with help from an AI assistant or the [Hyprland Wiki](https://wiki.hyprland.org/)
 
 ## What’s Inside
