@@ -1,0 +1,56 @@
+filetype: sway
+
+detect:
+  filename: "\\.config/sway/.*$" # Pro všechny soubory v ~/.config/sway/
+  header: "^\\s*#.*$"             # První řádek je komentář
+
+rules:
+  # 1. Komentáře (nejvyšší priorita)
+  - type: "comment"
+    regex: "#.*"
+    color: "comment" # Používá výchozí barvu pro komentáře z tvého Micro schématu
+
+  # 2. Řetězce v uvozovkách
+  - type: "string"
+    regex: "\"[^\"]*\""
+    color: "string" # Výchozí barva pro stringy
+
+  # 3. Řetězce v apostrofech (pokud je používáš)
+  - type: "string"
+    regex: "'[^']*'"
+    color: "string"
+
+  # 4. Proměnné (začínající $, např. $mod, $ws1)
+  - type: "identifier" # V Micro to může být 'special' nebo 'preproc'
+    regex: "\\$\\w+"    # Dolar následovaný jedním nebo více alfanumerickými znaky
+    color: "special" # Nebo 'cyan', 'magenta'
+
+  # 5. Základní klíčová slova Sway (můžeš postupně přidávat další, která často používáš)
+  # Používáme \b pro hranice slova, aby to nechytalo např. 'setings'
+  - type: "keyword"
+    regex: "\\b(set|bindsym|exec|exec_always|for_window|mode|input|output|bar|font|gaps|include|workspace|floating|kill|reload|restart|exit|layout|focus|border|default_border)\\b"
+    color: "keyword" # Výchozí barva pro klíčová slova
+
+  # 6. Čísla (celá nebo desetinná)
+  - type: "number"
+    regex: "\\b\\d+(\\.\\d+)?\\b"
+    color: "number" # Výchozí barva pro čísla
+
+  # 7. Modifikační klávesy (pro bindsym)
+  - type: "constant" # Nebo "type"
+    regex: "\\b(Mod1|Mod4|Shift|Control|Alt|Super)\\b"
+    color: "magenta" # Vyber si barvu
+
+  # 8. Některé běžné hodnoty/operátory
+  - type: "constant"
+    regex: "\\b(on|off|yes|no|true|false|toggle|pixel|ppt|dpi)\\b"
+    color: "blue" # Vyber si barvu
+  - type: "operator"
+    regex: "[+]" # Jen plusko, pro jednoduchost
+    color: "yellow" # Vyber si barvu
+
+  # 9. Hex kódy barev (pro okraje, bar, atd.)
+  - type: "constant.numeric" # nebo string.special
+    regex: "#[0-9a-fA-F]{6,8}\\b" # #RRGGBB nebo #AARRGGBB
+    # regex: "#[0-9a-fA-F]{3,8}\\b" # Pokud používáš i #RGB a #ARGB zkratky
+    color: "cyan" # Vyber si barvu

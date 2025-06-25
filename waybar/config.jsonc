@@ -1,0 +1,113 @@
+// -*- mode: jsonc -*-
+// Waybar konfigurace – jednodušší verze bez šipek
+{
+    "layer": "top",
+    "position": "top",
+    "height": 10,
+    "spacing": 15, // Větší mezery mezi moduly
+
+    // --- Levá část panelu ---
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+
+    // --- Prostřední část ---
+    "modules-center": [
+        "mpris"
+    ],
+
+    // --- Pravá část panelu ---
+    "modules-right": [
+        "pulseaudio",
+        "memory",
+        "cpu",
+        "battery",
+        "disk",
+        "clock",
+        "custom/updates",
+        "tray"
+    ],
+
+    // --- Funkční moduly ---
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "show-empty": false,
+        "active-only": false,
+        "sort-by-number": true,
+        "format": "{name}",
+        "on-click": "activate"
+    },
+
+    "mpris": {
+        "format": "{player_icon} {title} - {artist}",
+        "format-paused": "{player_icon} {title} - {artist} (Paused)",
+        "format-stopped": "No media playing",
+        "player-icons": {
+            "spotify": "",
+            "default": "▶"
+        },
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-click-middle": "playerctl previous"
+    },
+
+    "clock": {
+        "format": "{:%H:%M %Z}",
+        "tooltip-format": "{:%A, %d. %B %Y}",
+        "interval": 1
+    },
+
+    "custom/updates": {
+        "exec": "checkupdates | wc -l",
+        "interval": 3600,
+        "format": "📦 {output}",
+        "format-alt": "📦 0",
+        "tooltip-format": "Updates:\\n{exec:checkupdates}",
+        "on-click": "wezterm -e sh -c 'checkupdates; echo -e \"\\nStiskni Enter pro ukončení\"; read -r'",
+        "signal": 8
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume:2}%",
+        "format-bluetooth": "{icon}  {volume}%",
+        "format-muted": "MUTE",
+        "format-icons": {
+            "headphones": "",
+            "default": ["", ""]
+        },
+        "scroll-step": 5,
+        "on-click": "pamixer -t",
+        "on-click-right": "pavucontrol"
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "Mem {percentage:2}%"
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": "CPU {usage:2}%"
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "disk": {
+        "interval": 5,
+        "format": "Disk {percentage_used:2}%",
+        "path": "/"
+    },
+
+    "tray": {
+        "icon-size": 20
+    }
+}

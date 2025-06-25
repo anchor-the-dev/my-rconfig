@@ -1,0 +1,65 @@
+* {
+    font-size: 20px;
+    font-family: monospace; /* Zkontroluj, že podporuje Nerd Fonts! */
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent; /* Průhledné pozadí lišty */
+    color: #fdf6e3;
+    border: none;
+}
+
+/* Všechny běžné moduly */
+#workspaces,
+#mpris,
+#clock,
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#disk,
+#custom-updates,
+#tray {
+    background: rgba(0, 0, 0, 0.4); /* Poloprůhledná černá */
+    padding: 1px 4px;
+    margin: 1px;
+    border-radius: 10px; /* Zaoblené rohy */
+}
+
+/* Workspace tlačítka */
+#workspaces button {
+    background: transparent;
+    color: #fdf6e3;
+    margin: 0 4px;
+    border: none;
+    border-radius: 6px;
+    padding: 2px 8px;
+}
+
+#workspaces button.focused {
+    color: #268bd2;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Barvy pro jednotlivé moduly */
+#pulseaudio { color: #268bd2; }
+#memory     { color: #2aa198; }
+#cpu        { color: #6c71c4; }
+#battery    { color: #859900; }
+#disk       { color: #b58900; }
+#clock      { color: #83a598; }
+#mpris      { color: #d3869b; }
+#custom-updates { color: #fe8019; }
+
+/* Tray specificky (volitelně) */
+#tray {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 4px 8px;
+    margin: 4px;
+}

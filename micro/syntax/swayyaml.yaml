@@ -1,0 +1,18 @@
+# micro:filetype=swayyaml
+
+variables:
+  mod: Mod4
+  term: alacritty
+
+exec:
+  - firefox
+  - $term
+
+bindings:
+  "$mod+Return": exec $term
+  "$mod+Shift+q": kill
+  "$mod+r": reload
+
+input:
+  "*":
+    xkb_layout: "cz"
